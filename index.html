@@ -44,6 +44,7 @@
             border-radius: 5px;
             text-decoration: none;
             transition: background-color 0.3s;
+            animation: buttonFadeIn 1s ease-in-out;
         }
         a:hover {
             background-color: #666666; /* Darker shade of gray for hover */
@@ -66,6 +67,16 @@
             word-wrap: break-word;
             margin: 0;
             padding: 0;
+        }
+        @keyframes buttonFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -100,9 +111,9 @@ public:
         </code></pre>
     </div>
     <div class="container">
-        <h1>Tech Takeovers</h1>
-        <p>No fluff, no corporate talk - just tech, design, and a</p>
-        <a href="https://www.instagram.com/tech.takeovers/">vibe that hits differently</a>
+        <h1>TechTakeovers</h1>
+        <p>No fluff, no corporate talk - just tech, design, and a vibe that hits differently</p>
+        <a href="https://www.instagram.com/tech.takeovers/">🔗 Check it out</a>
     </div>
 </body>
 </html>
