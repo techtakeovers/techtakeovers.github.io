@@ -14,14 +14,17 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             color: #333;
+            position: relative;
         }
         .container {
             text-align: center;
             max-width: 600px;
             padding: 20px;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            position: relative;
+            z-index: 2;
         }
         h1 {
             font-size: 2.5em;
@@ -45,9 +48,42 @@
         a:hover {
             background-color: #666666; /* Darker shade of gray for hover */
         }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            opacity: 0.1; /* Adjust opacity for visibility */
+        }
+        .background pre {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0;
+            padding: 0;
+        }
     </style>
 </head>
 <body>
+    <div class="background">
+        <pre><code>
+// Sample code snippet
+function greet() {
+    console.log('Hello, world!');
+}
+
+greet();
+
+// Another code snippet
+const add = (a, b) => a + b;
+console.log(add(2, 3));
+        </code></pre>
+    </div>
     <div class="container">
         <h1>Tech Takeovers</h1>
         <p>No fluff, no corporate talk - just tech, design, and a</p>
