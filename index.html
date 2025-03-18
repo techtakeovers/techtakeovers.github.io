@@ -66,9 +66,42 @@
                 transform: translateY(0);
             }
         }
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 5px;
+            background-color: #808080; /* Gray color */
+            z-index: 10;
+            transition: width 0.25s;
+        }
+        .scroll-arrow {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            color: #808080; /* Gray color */
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    <div class="scroll-arrow" id="scrollArrow">↓</div>
     <div class="background" style="background-image: url('path/to/your/image.jpg');">
         <pre><code>
             void refill() {
@@ -119,5 +152,25 @@
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfkelGIC-BoNmDWIlhlK1EMrOZH5MnnfFZs18fyZ8L0GlsReA/viewform">Fill out the form to be part of it</a>
         </div>
     </div>
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            const scrollArrow = document.getElementById('scrollArrow');
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const percentage = (window.scrollY / maxScroll) * 100;
+            scrollIndicator.style.width = percentage + '%';
+            if (window.scrollY > 50) {
+                scrollArrow.style.display = 'none';
+            } else {
+                scrollArrow.style.display = 'block';
+            }
+        });
+        document.getElementById('scrollArrow').addEventListener('click', function() {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>
