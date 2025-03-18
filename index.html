@@ -72,16 +72,31 @@
 <body>
     <div class="background">
         <pre><code>
-// Sample code snippet
-function greet() {
-    console.log('Hello, world!');
-}
+  void refill() {
+        auto now = std::chrono::steady_clock::now();
+        double seconds = std::chrono::duration<double>(now - lastRefill).count();
+        int newTokens = static_cast<int>(seconds * refillRate);
+        
+        if (newTokens > 0) {
+            tokens = std::min(capacity, tokens + newTokens);
+            lastRefill = now;
+        }
+    }
 
-greet();
+public:
+    RateLimiter(int cap, int rate) : capacity(cap), tokens(cap), refillRate(rate) {
+        lastRefill = std::chrono::steady_clock::now();
+    }
 
-// Another code snippet
-const add = (a, b) => a + b;
-console.log(add(2, 3));
+    bool allowRequest() {
+        refill();
+        if (tokens > 0) {
+            tokens--;
+            return true;
+        }
+        return false;
+    }
+};
         </code></pre>
     </div>
     <div class="container">
